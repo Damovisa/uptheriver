@@ -66,7 +66,7 @@ function generateHands(maxCards) {
   const down = [];
   for (let i = maxCards; i >= 1; i--) down.push(i);
   const up = [];
-  for (let i = 2; i <= maxCards; i++) up.push(i);
+  for (let i = 1; i <= maxCards; i++) up.push(i);
   return [...down, ...up];
 }
 

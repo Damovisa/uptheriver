@@ -5,7 +5,7 @@ A mobile-friendly, single-page web app for scoring games of **Up the River, Down
 ## Features
 
 - Add 2–10 players with custom names
-- Configurable max cards per hand (default 10 → gives 19 hands: 10→1→10)
+- Configurable max cards per hand (default 10 → gives 20 hands: 10→1, then 1→10)
 - Per-player trick predictions at the start of each hand
 - Automatic scoring: **tricks won + 10 bonus** if prediction is exact
 - Running scoreboard updated after every hand
