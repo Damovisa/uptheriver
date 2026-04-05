@@ -233,12 +233,26 @@ function renderInputSection() {
 
     // Restore saved value if editing
     const input = row.querySelector('input');
-    if (phase === 'tricks' && state.tricks && state.tricks[i] !== undefined && state.tricks[i] !== '') {
+    if (phase === 'predicting' && state.predictions && state.predictions[i] !== undefined && state.predictions[i] !== '') {
+      input.value = state.predictions[i];
+    } else if (phase === 'tricks' && state.tricks && state.tricks[i] !== undefined && state.tricks[i] !== '') {
       input.value = state.tricks[i];
     }
   });
 
   document.getElementById('total-warning').classList.add('hidden');
+
+  // Back button
+  const backBtn = document.getElementById('back-btn');
+  if (phase === 'tricks') {
+    backBtn.textContent = '← Edit Predictions';
+    backBtn.classList.remove('hidden');
+  } else if (currentHandIndex > 0) {
+    backBtn.textContent = '← Edit Last Hand';
+    backBtn.classList.remove('hidden');
+  } else {
+    backBtn.classList.add('hidden');
+  }
 }
 
 // ── Actions ───────────────────────────────────────────────────────────────────
@@ -308,6 +322,25 @@ function showWarning(msg) {
   const el = document.getElementById('total-warning');
   el.textContent = msg;
   el.classList.remove('hidden');
+}
+
+function handleBack() {
+  if (state.phase === 'tricks') {
+    // Return to predictions phase with existing predictions pre-filled
+    state.phase = 'predicting';
+    state.tricks = undefined;
+    renderGame();
+    document.querySelector('#player-inputs input')?.focus();
+  } else if (state.phase === 'predicting' && state.currentHandIndex > 0) {
+    // Undo the last completed hand and re-enter tricks for it
+    const lastHand = state.handHistory.pop();
+    state.currentHandIndex--;
+    state.predictions = [...lastHand.predictions];
+    state.tricks = [...lastHand.tricks];
+    state.phase = 'tricks';
+    renderGame();
+    document.querySelector('#player-inputs input')?.focus();
+  }
 }
 
 // ── Results ───────────────────────────────────────────────────────────────────
