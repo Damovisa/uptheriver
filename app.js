@@ -262,6 +262,13 @@ function handleAction() {
   }
 
   if (phase === 'predicting') {
+    const predictionSum = nums.reduce((a, b) => a + b, 0);
+    if (predictionSum === cardCount) {
+      showWarning(
+        `Total predictions (${predictionSum}) cannot equal the number of cards dealt (${cardCount}). Please adjust.`
+      );
+      return;
+    }
     state.predictions = nums;
     state.phase = 'tricks';
     state.tricks = new Array(players.length).fill('');
