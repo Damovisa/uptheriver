@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Up the River – Score Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Setup Screen ── -->
+  <div id="setup-screen" class="screen active">
+    <div class="container narrow">
+      <h1>🃏 Up the River</h1>
+      <p class="subtitle">Down the River Score Tracker</p>
+
+      <div class="card">
+        <h2>Game Setup</h2>
+
+        <div class="form-group">
+          <label for="max-cards">Max cards per hand</label>
+          <input id="max-cards" type="number" value="10" min="1" max="30" />
+          <small>Hands go <em>max → 1 → max</em> (e.g. 10 gives 20 hands)</small>
+        </div>
+
+        <div class="form-group">
+          <label>Players</label>
+          <div class="stepper">
+            <button type="button" class="stepper-btn" id="remove-player-btn" onclick="removePlayer()">−</button>
+            <span id="player-count-display">2</span>
+            <button type="button" class="stepper-btn" onclick="addPlayer()">+</button>
+          </div>
+        </div>
+
+        <div id="player-name-list">
+          <!-- populated by JS -->
+        </div>
+
+        <button class="btn btn-primary full-width" onclick="startGame()">Start Game</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Game Screen ── -->
+  <div id="game-screen" class="screen">
+    <div class="container wide">
+
+      <div class="game-header">
+        <h1>🃏 Up the River</h1>
+        <div class="hand-badge">
+          <span id="hand-label"></span>
+          <span id="cards-label" class="badge"></span>
+        </div>
+      </div>
+
+      <!-- Score table -->
+      <div class="card scroll-x">
+        <h2>Scoreboard</h2>
+        <table id="score-table">
+          <!-- populated by JS -->
+        </table>
+      </div>
+
+      <!-- Input panel -->
+      <div class="card" id="input-card">
+        <h2 id="input-title"></h2>
+        <p id="input-desc" class="description"></p>
+
+        <div id="player-inputs">
+          <!-- populated by JS -->
+        </div>
+
+        <div id="total-warning" class="warning hidden"></div>
+
+        <div class="button-row">
+          <button class="btn btn-primary" id="action-btn" onclick="handleAction()"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Results Screen ── -->
+  <div id="results-screen" class="screen">
+    <div class="container narrow">
+      <h1>🏆 Game Over!</h1>
+
+      <div class="card" id="final-results">
+        <!-- populated by JS -->
+      </div>
+
+      <button class="btn btn-secondary full-width" onclick="newGame()">New Game</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
