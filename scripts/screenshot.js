@@ -27,13 +27,14 @@ function startServer() {
   return new Promise((resolve) => {
     const server = http.createServer((req, res) => {
       const urlPath = req.url === '/' ? '/index.html' : req.url.split('?')[0];
-      // Resolve the path and ensure it stays within ROOT to prevent path traversal
-      const filePath = path.resolve(ROOT, '.' + urlPath);
-      if (!filePath.startsWith(ROOT + path.sep) && filePath !== ROOT) {
-        res.writeHead(403);
-        res.end('Forbidden');
+      // Whitelist only the known static files served by this app
+      const ALLOWED = new Set(['/index.html', '/app.js', '/style.css']);
+      if (!ALLOWED.has(urlPath)) {
+        res.writeHead(404);
+        res.end('Not found');
         return;
       }
+      const filePath = path.join(ROOT, urlPath);
       const ext = path.extname(filePath);
       try {
         const data = fs.readFileSync(filePath);
