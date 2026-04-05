@@ -38,3 +38,20 @@ After the first successful deployment the site will be available at:
 ```
 https://<your-github-username>.github.io/uptheriver/
 ```
+
+## Screenshots
+
+### Setup screen – configure players and max cards
+![Setup screen showing three player name fields (Alice, Bob, Carol) and max cards set to 5](screenshots/01-setup.png)
+
+### Predict phase – enter trick predictions for hand 1
+![Game screen in predicting phase with predictions 2, 1, 1 entered for the first hand of 5 cards](screenshots/02-predict.png)
+
+### Tricks phase – enter actual tricks won
+![Game screen in tricks phase after locking predictions, with tricks 3, 1, 1 entered](screenshots/03-tricks.png)
+
+### Mid-game scoreboard – populated after several hands
+![Game screen showing a scrollable scoreboard with scores from completed hands and the predict phase for the current hand](screenshots/04-scoreboard.png)
+
+### Results screen – final rankings
+![Results screen displaying final scores and rankings for Alice, Bob, and Carol](screenshots/05-results.png)

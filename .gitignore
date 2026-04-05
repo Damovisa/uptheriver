@@ -8,3 +8,6 @@ Thumbs.db
 
 # Temp
 /tmp/
+
+# Node
+node_modules/
